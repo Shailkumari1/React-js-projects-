@@ -1,4 +1,4 @@
-import { useState , useCallback} from 'react'
+import { useState , useCallback ,useEffect,useRef} from 'react'
 
 
 function App() {
@@ -6,6 +6,8 @@ function App() {
   const [NoAllow, setNoAllow] = useState(false)
   const [charAllow, setcharAllow] = useState(false)
   const [passward, setpassward] = useState("")
+  /* useRef hook */
+  const passwardReference = useRef(null)
 
   /*usecallback hooks */
 
@@ -20,12 +22,24 @@ function App() {
     for (let index = 0; index <length; index++) {
 
       let char = Math.floor(Math.random()* str.length+1)
-      pass= str.charAt(char)
+      pass += str.charAt(char)
       
     }
     setpassward(pass)
 
   },[length,NoAllow,charAllow,setpassward])
+
+  const copyPassward = useCallback(() => {
+    passwardReference.current?.select()
+    window.navigator.clipboard.writeText(passward)
+  })
+
+  /* useEffect*/
+
+  useEffect(()=> {
+    passwardGenerater()
+
+  },[length,NoAllow,charAllow,passwardGenerater])
 
   return (
     <>
@@ -40,8 +54,14 @@ function App() {
         className='outline-none w-full py-1 px-3'
         placeholder="Passward"
         readOnly
+        
+        ref={passwardReference}
+
+
         />
-        <button className='outline-none bg-blue-500 text-white px-3 py-0.5 shrink-0  '>copy</button>
+        <button 
+        onClick={copyPassward}
+        className='outline-none bg-blue-500 text-white px-3 py-0.5 shrink-0'>copy</button>
 
 
 

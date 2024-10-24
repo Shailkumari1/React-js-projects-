@@ -51,7 +51,7 @@ const Login = () => {
             }}
            
            required className='text-xl outline-none bg-transparent border-2 border-emerald-600 py-3 px-5 rounded-full  placeholder:text-gray-400 mt-3' type="passward" placeholder='Enter passward' />
-           <button className=' mt-5 text-white outline-none border-none text-xl bg-emerald-600 py-3 px-5 rounded-full placeholder:text-white'>Log in</button>
+           <button className=' mt-5 text-white outline-none border-none text-xl bg-emerald-600 py-3 px-5 rounded-full placeholder:text-white'>Login</button>
            
            </form>
         </div>
